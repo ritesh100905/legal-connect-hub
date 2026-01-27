@@ -1,20 +1,24 @@
 import { Scale, Mail, Phone, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
-
 const Footer = () => {
-  const quickLinks = [
-    { label: "Find Lawyers", href: "/find-lawyers" },
-    { label: "Specializations", href: "/specializations" },
-    { label: "How It Works", href: "/how-it-works" },
-  ];
-
-  const forLawyers = [
-    { label: "Join as Lawyer", href: "/lawyer-signup" },
-    { label: "Lawyer Dashboard", href: "/lawyer-dashboard" },
-  ];
-
-  return (
-    <footer className="bg-navy text-navy-foreground">
+  const quickLinks = [{
+    label: "Find Lawyers",
+    href: "/find-lawyers"
+  }, {
+    label: "Specializations",
+    href: "/specializations"
+  }, {
+    label: "How It Works",
+    href: "/how-it-works"
+  }];
+  const forLawyers = [{
+    label: "Join as Lawyer",
+    href: "/lawyer-signup"
+  }, {
+    label: "Lawyer Dashboard",
+    href: "/lawyer-dashboard"
+  }];
+  return <footer className="bg-navy text-navy-foreground">
       <div className="container py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Brand Section */}
@@ -25,7 +29,7 @@ const Footer = () => {
               </div>
               <div className="flex flex-col">
                 <span className="font-bold text-lg leading-tight">DAL</span>
-                <span className="text-xs text-primary leading-tight">Dhundho Apna Lawyer</span>
+                <span className="text-xs leading-tight text-amber-400">Dhundho Apna Lawyer</span>
               </div>
             </Link>
             <p className="text-sm text-navy-foreground/70 leading-relaxed">
@@ -37,16 +41,11 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-3">
-              {quickLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    to={link.href}
-                    className="text-sm text-navy-foreground/70 hover:text-primary transition-colors"
-                  >
+              {quickLinks.map(link => <li key={link.href}>
+                  <Link to={link.href} className="text-sm text-navy-foreground/70 hover:text-primary transition-colors">
                     {link.label}
                   </Link>
-                </li>
-              ))}
+                </li>)}
             </ul>
           </div>
 
@@ -54,16 +53,11 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4">For Lawyers</h4>
             <ul className="space-y-3">
-              {forLawyers.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    to={link.href}
-                    className="text-sm text-navy-foreground/70 hover:text-primary transition-colors"
-                  >
+              {forLawyers.map(link => <li key={link.href}>
+                  <Link to={link.href} className="text-sm text-navy-foreground/70 hover:text-primary transition-colors">
                     {link.label}
                   </Link>
-                </li>
-              ))}
+                </li>)}
             </ul>
           </div>
 
@@ -93,23 +87,15 @@ const Footer = () => {
             © 2026 DAL - Dhundho Apna Lawyer. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
-            <Link
-              to="/privacy-policy"
-              className="text-sm text-navy-foreground/60 hover:text-primary transition-colors"
-            >
+            <Link to="/privacy-policy" className="text-sm text-navy-foreground/60 hover:text-primary transition-colors">
               Privacy Policy
             </Link>
-            <Link
-              to="/terms"
-              className="text-sm text-navy-foreground/60 hover:text-primary transition-colors"
-            >
+            <Link to="/terms" className="text-sm text-navy-foreground/60 hover:text-primary transition-colors">
               Terms of Service
             </Link>
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
