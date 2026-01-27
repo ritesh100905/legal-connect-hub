@@ -1,21 +1,30 @@
 import { Search, MapPin, Scale, Shield, Users, Star, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
 const HeroSection = () => {
-  const features = [
-    { icon: Shield, title: "Verified Profiles", subtitle: "Bar Council Verified" },
-    { icon: Users, title: "Direct Connect", subtitle: "Online & Offline" },
-    { icon: Star, title: "Transparent Reviews", subtitle: "Real Client Feedback" },
-  ];
-
-  const stats = [
-    { value: "5000+", label: "Verified Lawyers" },
-    { value: "50K+", label: "Consultations" },
-    { value: "28", label: "States Covered" },
-  ];
-
-  return (
-    <section className="bg-navy text-navy-foreground">
+  const features = [{
+    icon: Shield,
+    title: "Verified Profiles",
+    subtitle: "Bar Council Verified"
+  }, {
+    icon: Users,
+    title: "Direct Connect",
+    subtitle: "Online & Offline"
+  }, {
+    icon: Star,
+    title: "Transparent Reviews",
+    subtitle: "Real Client Feedback"
+  }];
+  const stats = [{
+    value: "5000+",
+    label: "Verified Lawyers"
+  }, {
+    value: "50K+",
+    label: "Consultations"
+  }, {
+    value: "28",
+    label: "States Covered"
+  }];
+  return <section className="bg-navy text-navy-foreground">
       <div className="container py-12 md:py-20">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left Content */}
@@ -23,14 +32,14 @@ const HeroSection = () => {
             {/* Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-navy-light rounded-full border border-navy-light">
               <CheckCircle className="w-4 h-4 text-primary" />
-              <span className="text-sm font-medium">Verified Lawyers Across India</span>
+              <span className="text-sm font-medium text-amber-400">Verified Lawyers Across India</span>
             </div>
 
             {/* Headline */}
             <div className="space-y-4">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
                 Find Your Perfect{" "}
-                <span className="text-primary">Legal Expert</span>
+                <span className="text-amber-400">Legal Expert</span>
               </h1>
               <p className="text-lg text-navy-foreground/80 max-w-lg">
                 Connect with verified lawyers and advocates across India. Get expert legal consultation for your specific needs with complete transparency.
@@ -69,12 +78,10 @@ const HeroSection = () => {
 
             {/* Stats */}
             <div className="flex flex-wrap gap-8 pt-4">
-              {stats.map((stat) => (
-                <div key={stat.label} className="space-y-1">
+              {stats.map(stat => <div key={stat.label} className="space-y-1">
                   <div className="text-3xl md:text-4xl font-bold">{stat.value}</div>
                   <div className="text-sm text-navy-foreground/60">{stat.label}</div>
-                </div>
-              ))}
+                </div>)}
             </div>
           </div>
 
@@ -93,11 +100,7 @@ const HeroSection = () => {
 
             {/* Feature List */}
             <div className="space-y-4">
-              {features.map((feature) => (
-                <div
-                  key={feature.title}
-                  className="flex items-center gap-4 p-4 rounded-xl bg-muted/50 hover:bg-muted transition-colors"
-                >
+              {features.map(feature => <div key={feature.title} className="flex items-center gap-4 p-4 rounded-xl bg-muted/50 hover:bg-muted transition-colors">
                   <div className="w-11 h-11 rounded-lg bg-primary/10 flex items-center justify-center">
                     <feature.icon className="w-5 h-5 text-primary" />
                   </div>
@@ -105,13 +108,12 @@ const HeroSection = () => {
                     <h4 className="font-medium text-foreground">{feature.title}</h4>
                     <p className="text-sm text-muted-foreground">{feature.subtitle}</p>
                   </div>
-                </div>
-              ))}
+                </div>)}
             </div>
 
             {/* Rating Badge */}
             <div className="mt-6 flex justify-center">
-              <div className="inline-flex items-center gap-2 px-6 py-3 bg-primary rounded-full">
+              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-amber-400">
                 <Star className="w-5 h-5 text-primary-foreground fill-primary-foreground" />
                 <span className="font-semibold text-primary-foreground">4.8/5 Rating</span>
               </div>
@@ -119,8 +121,6 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default HeroSection;
