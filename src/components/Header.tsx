@@ -10,6 +10,7 @@ const Header = () => {
     { label: "Find Lawyers", href: "/find-lawyers" },
     { label: "Specializations", href: "/specializations" },
     { label: "How It Works", href: "/how-it-works" },
+    { label: "Join as Lawyer", href: "/lawyer-signup" },
   ];
 
   return (
