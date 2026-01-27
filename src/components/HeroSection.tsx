@@ -31,15 +31,15 @@ const HeroSection = () => {
           <div className="space-y-8">
             {/* Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-navy-light rounded-full border border-navy-light">
-              <CheckCircle className="w-4 h-4 text-primary" />
-              <span className="text-sm font-medium">Verified Lawyers Across India</span>
+              <CheckCircle className="w-4 h-4 text-yellow-500" />
+              <span className="text-sm font-medium text-yellow-500">Verified Lawyers Across India</span>
             </div>
 
             {/* Headline */}
             <div className="space-y-4">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight bg-navy">
                 Find Your Perfect{" "}
-                <span className="text-primary">Legal Expert</span>
+                <span className="text-yellow-500">Legal Expert</span>
               </h1>
               <p className="text-navy-foreground/80 max-w-lg text-base font-bold">
                 Connect with verified lawyers and advocates across India. Get expert legal consultation for your specific needs with complete transparency.
@@ -89,7 +89,7 @@ const HeroSection = () => {
           <div className="bg-background rounded-2xl p-6 md:p-8 shadow-card-hover">
             {/* Header */}
             <div className="flex items-center gap-4 mb-8">
-              <div className="w-14 h-14 rounded-xl bg-primary flex items-center justify-center">
+              <div className="w-14 h-14 rounded-xl flex items-center justify-center bg-amber-600">
                 <Scale className="w-7 h-7 text-primary-foreground" />
               </div>
               <div>
@@ -113,9 +113,9 @@ const HeroSection = () => {
 
             {/* Rating Badge */}
             <div className="mt-6 flex justify-center">
-              <div className="inline-flex items-center gap-2 px-6 py-3 bg-primary rounded-full">
+              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-amber-500">
                 <Star className="w-5 h-5 text-primary-foreground fill-primary-foreground" />
-                <span className="font-semibold text-primary-foreground bg-orange-400">4.8/5 Rating</span>
+                <span className="font-semibold text-primary-foreground bg-amber-500">4.8/5 Rating</span>
               </div>
             </div>
           </div>
