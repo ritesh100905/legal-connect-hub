@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -12,9 +13,9 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Badge } from "@/components/ui/badge";
-import { Scale, Shield, CheckCircle, Upload, FileText, User, Briefcase, MapPin } from "lucide-react";
+import { Scale, Shield, CheckCircle, Upload, FileText, User, Briefcase, MapPin, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-
+import { supabase } from "@/integrations/supabase/client";
 const lawyerSignupSchema = z.object({
   // Personal Information
   fullName: z.string().min(2, "Name must be at least 2 characters").max(100),
@@ -99,6 +100,7 @@ const experienceOptions = [
 
 const LawyerSignup = () => {
   const { toast } = useToast();
+  const navigate = useNavigate();
   const [selectedCourts, setSelectedCourts] = useState<string[]>([]);
   const [selectedLanguages, setSelectedLanguages] = useState<string[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -143,16 +145,67 @@ const LawyerSignup = () => {
   const onSubmit = async (data: LawyerSignupForm) => {
     setIsSubmitting(true);
     try {
-      // TODO: Implement actual submission to Supabase
-      console.log("Form submitted:", data);
-      toast({
-        title: "Application Submitted!",
-        description: "Your application has been received. We will verify your Bar Council ID and contact you within 24-48 hours.",
+      // Check if email already exists
+      const { data: existingApplication } = await supabase
+        .from("lawyer_applications")
+        .select("id, status")
+        .eq("email", data.email)
+        .maybeSingle();
+
+      if (existingApplication) {
+        const statusMessage = existingApplication.status === 'pending' 
+          ? "Your application is currently under review." 
+          : existingApplication.status === 'approved' 
+            ? "Your application has already been approved." 
+            : "Your previous application was reviewed. Please contact support for more information.";
+        
+        toast({
+          title: "Application Already Exists",
+          description: statusMessage,
+          variant: "destructive",
+        });
+        return;
+      }
+
+      // Insert new application
+      const { error } = await supabase.from("lawyer_applications").insert({
+        full_name: data.fullName.trim(),
+        email: data.email.trim().toLowerCase(),
+        phone: data.phone.trim(),
+        bar_council_id: data.barCouncilId.trim(),
+        bar_council_state: data.barCouncilState,
+        enrollment_year: data.enrollmentYear.trim(),
+        specialization: data.specialization,
+        experience: data.experience,
+        practicing_courts: data.practicingCourts,
+        city: data.city.trim(),
+        state: data.state,
+        languages: data.languages,
+        consultation_fee: parseInt(data.consultationFee, 10),
+        bio: data.bio.trim(),
+        status: "pending",
       });
+
+      if (error) {
+        console.error("Supabase error:", error);
+        throw new Error(error.message);
+      }
+
+      toast({
+        title: "Application Submitted Successfully!",
+        description: "We will verify your Bar Council ID and contact you within 24-48 hours.",
+      });
+
+      // Reset form
+      form.reset();
+      setSelectedCourts([]);
+      setSelectedLanguages([]);
+
     } catch (error) {
+      console.error("Submission error:", error);
       toast({
         title: "Submission Failed",
-        description: "There was an error submitting your application. Please try again.",
+        description: error instanceof Error ? error.message : "There was an error submitting your application. Please try again.",
         variant: "destructive",
       });
     } finally {

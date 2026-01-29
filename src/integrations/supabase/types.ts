@@ -41,6 +41,72 @@ export type Database = {
         }
         Relationships: []
       }
+      lawyer_applications: {
+        Row: {
+          bar_council_id: string
+          bar_council_state: string
+          bio: string
+          city: string
+          consultation_fee: number
+          created_at: string
+          email: string
+          enrollment_year: string
+          experience: string
+          full_name: string
+          id: string
+          languages: string[]
+          phone: string
+          practicing_courts: string[]
+          specialization: string
+          state: string
+          status: string
+          updated_at: string
+          verification_notes: string | null
+        }
+        Insert: {
+          bar_council_id: string
+          bar_council_state: string
+          bio: string
+          city: string
+          consultation_fee: number
+          created_at?: string
+          email: string
+          enrollment_year: string
+          experience: string
+          full_name: string
+          id?: string
+          languages: string[]
+          phone: string
+          practicing_courts: string[]
+          specialization: string
+          state: string
+          status?: string
+          updated_at?: string
+          verification_notes?: string | null
+        }
+        Update: {
+          bar_council_id?: string
+          bar_council_state?: string
+          bio?: string
+          city?: string
+          consultation_fee?: number
+          created_at?: string
+          email?: string
+          enrollment_year?: string
+          experience?: string
+          full_name?: string
+          id?: string
+          languages?: string[]
+          phone?: string
+          practicing_courts?: string[]
+          specialization?: string
+          state?: string
+          status?: string
+          updated_at?: string
+          verification_notes?: string | null
+        }
+        Relationships: []
+      }
       lawyers: {
         Row: {
           experience: number | null
