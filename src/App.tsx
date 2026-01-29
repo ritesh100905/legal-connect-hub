@@ -9,6 +9,7 @@ import FindLawyers from "./pages/FindLawyers";
 import LawyerSignup from "./pages/LawyerSignup";
 import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
+import Blueprint from "./pages/Blueprint";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +25,7 @@ const App = () => (
             <Route path="/auth" element={<Auth />} />
             <Route path="/find-lawyers" element={<FindLawyers />} />
             <Route path="/lawyer-signup" element={<LawyerSignup />} />
+            <Route path="/blueprint" element={<Blueprint />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

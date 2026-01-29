@@ -18,6 +18,7 @@ const Header = () => {
 
   const navLinks = [
     { label: "Find Lawyers", href: "/find-lawyers" },
+    { label: "Blueprint", href: "/blueprint" },
     { label: "Specializations", href: "/specializations" },
     { label: "How It Works", href: "/how-it-works" },
     { label: "Join as Lawyer", href: "/lawyer-signup" },
